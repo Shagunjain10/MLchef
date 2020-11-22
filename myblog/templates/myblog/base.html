@@ -6,11 +6,13 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    
     <link rel="stylesheet" type="text/css" href="{% static 'myblog/main.css' %}">
+    {% block styles %} 
+    {% endblock %}
 
     {% if title %}
         <title>ML chef - {{ title }}</title>
@@ -20,7 +22,7 @@
 </head>
 <body>
     <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel">
         <div class="container">
           <a class="navbar-brand mr-4" href="{% url 'blog-home' %}">Machine Learning Chef</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
@@ -38,7 +40,7 @@
                 <a class="nav-item nav-link" href="{% url 'profile' %}">{{user.username}}</a>
                 <a class="nav-item nav-link" href="{% url 'logout' %}">LogOut</a>
               {% else %}
-                <a class="nav-item nav-link btn btn-outline-primary" href="{% url 'login' %}">Login</a>
+                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
                 <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
               {% endif %}
             </div>
@@ -46,18 +48,20 @@
         </div>
       </nav>
     </header>
+
+    {% block extra_content %}{% endblock%}
+
     <main role="main" class="container">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-12">
           {% if messages %}
             {% for message in messages %}
               <div class="alert alert-{{message.tags}}"> {{message}}</div>
             {% endfor %}
           {% endif %}
           {% block content %}{% endblock %}
-          
         </div>
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="content-section">
             <h3>Our Sidebar</h3>
             <p class='text-muted'>You can put any information here you'd like.
@@ -69,10 +73,15 @@
               </ul>
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
     </main>
+    <!-- Footer   ------------------------>
 
+    <div class="footer ">
+        <p>Copyright &copy; ML chef </p>
+        <div class="made">Made by: <a  target="_blank" href="https://www.linkedin.com/in/shagun-jain-32292a16b/">Shagun Jain</a></div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

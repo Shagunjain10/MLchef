@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
+from django.urls import reverse
 # Create your views here.
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, DeleteView
@@ -11,6 +12,23 @@ def home(request):
         'posts': Post.objects.all()
     }
 	return render(request,'myblog/home.html',context)
+
+
+def LikeView(request, pk):
+	post = get_object_or_404(Post, id=request.POST.get('post_id'))
+	# print(post.title)
+	liked = False
+	if post.likes.filter(id = request.user.id).exists():
+		post.likes.remove(request.user)
+		liked = False
+	else:
+		post.likes.add(request.user)
+		liked = True
+	
+	return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
+
+
+
 
 class Post_ListView(ListView):
 	"""docstring for Post_ListView"""
@@ -38,6 +56,17 @@ class userPost_ListView(ListView):
 
 class Post_DetailView(DetailView):
 	model = Post
+	def get_context_data(self, *args, **kwargs):
+		context = super().get_context_data(**kwargs)
+		current_post = get_object_or_404(Post, id=self.kwargs['pk'])
+		liked = False
+		if current_post.likes.filter(id=self.request.user.id).exists():
+			liked=True
+
+		total_like = current_post.total_like()
+		context["total_like"] = total_like
+		context["liked"] = liked
+		return context
 
 class Post_DeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 	model = Post
@@ -48,6 +77,7 @@ class Post_DeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 		if self.request.user == post.author:
 			return True
 		return False
+
 
 
 class Post_CreateView(LoginRequiredMixin,CreateView):

@@ -8,12 +8,55 @@
         <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
       </div>
       <h2 class="article-title">{{ object.title }}</h2>
-      <p class="article-content">{{ object.content }}</p>
+      <p class="article-content">{{ object.content|safe }}</p>
       {% if object.author == user %}
           <div>
             <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
           </div>
         {% endif %}
+
+  {% if user.is_authenticated %}
+    <form action="{% url 'like_post' post.pk %}" method="POST">
+      {% csrf_token %}
+        {% if liked %}
+          <button type="submit", name="post_id", value="{{ post.id }}", class="btn"><i class="fa fa-heart"></i></button> <span>  {{ total_like }} Likes</span>
+        {% else %}
+          <button type="submit", name="post_id", value="{{ post.id }}", class="btn"><i class="fa">&#xf08a;</i></button> <span>  {{ total_like }} Likes</span>
+        {% endif %}
+      </form>
+      {% else %}
+    <p><a class="ml-2" href="{% url 'login' %}">Login</a> to Like</p>
+    {% endif %}
+
+        
     </div>
+
+  
   </article>
+
+  
+
+
+  <!-- <div class="container">
+    <h2><i class="fa fa-heart"></i><i class="fa">&#xf08a;</i></h2>
+    <div class="row my-3">
+      <div class="col-md-2 bg-success">
+        Image
+      </div>
+      <div class="col-md-10 bg-primary">Text</div>
+    </div>
+    <div class="row my-3">
+      <div class="col-md-2 bg-success">
+        Image
+      </div>
+      <div class="col-md-10 bg-primary">Text</div>
+    </div>
+    <div class="row my-3">
+      <div class="col-md-2 bg-success">
+        Image
+      </div>
+      <div class="col-md-10 bg-primary">Text</div>
+    </div>
+
+  </div> -->
 {% endblock content %}

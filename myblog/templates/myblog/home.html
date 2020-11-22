@@ -1,15 +1,38 @@
+
 {% extends "myblog/base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" type="text/css" href="{% static 'myblog/home_style.css' %}">
+{% endblock styles %}
+
+{% block extra_content%}
+
+<!-- Section -->
+<section class="site-title">
+  <div class="site-background" data-aos="fade-up" data-aos-delay="100">
+      <h3>Get the Knowledge to teach the computer how to get the Knowledge from data.</h3>
+      <h1>Amazing Machine Learning</h1>
+      <a href="#posts_start"><button class="btn">Explore</button></a>
+  </div>
+</section>
+
+{% endblock extra_content %}
+
+
+
+
 {% block content %}
-    {% for post in posts %}
+    <a name="posts_start"></a>
+     {% for post in posts %}
         <article class="media content-section">
           <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
           <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="{% url 'blog-user_post' post.author.username %}">{{ post.author }}</a>
+              <a class="mr-2 article-author" href="{% url 'blog-user_post' post.author.username %}">{{ post.author }}</a>
               <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
             </div>
             <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-            <p class="article-content">{{ post.content }}</p>
+            <!-- <p class="article-content">{{ post.content }}</p> -->
           </div>
         </article>
     {% endfor %}

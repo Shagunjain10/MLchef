@@ -1,5 +1,5 @@
 {% extends "myblog/base.html" %}
-{% load crispy_forms_tags%}
+{% load crispy_forms_tags %}
 
 {% block content %}
     <div class="content-section">
@@ -8,6 +8,7 @@
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Post the Blog</legend>
                 {{ form|crispy }}
+                <!-- {{ form.title |as_crispy_field }} -->
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit">Post</button>

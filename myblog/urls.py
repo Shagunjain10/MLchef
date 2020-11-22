@@ -5,7 +5,8 @@ from .views import (
 	Post_DetailView, 
 	Post_CreateView,
 	Post_DeleteView,
-	userPost_ListView
+	userPost_ListView,
+    LikeView
 )
 
 urlpatterns = [
@@ -16,4 +17,5 @@ urlpatterns = [
     path('post/<int:pk>/delete/', Post_DeleteView.as_view(), name='post-delete'), # model_confirm_delete
     path('post/create/', Post_CreateView.as_view(), name='post-create'), # template is 'model_form.html'
     path('about/', views.about, name='blog-about'),
+    path('post/<int:pk>', LikeView, name='like_post'),
 ]
