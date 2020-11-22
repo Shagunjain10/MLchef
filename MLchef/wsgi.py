@@ -1,5 +1,5 @@
 """
-WSGI config for MLchef project.
+WSGI config for myblogsite project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
