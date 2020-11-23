@@ -27,9 +27,6 @@ def LikeView(request, pk):
 	
 	return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
 
-
-
-
 class Post_ListView(ListView):
 	"""docstring for Post_ListView"""
 	model = Post

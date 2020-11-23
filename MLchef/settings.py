@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = ')d(%sysbgfr61ge*h!m_gct%e!*ah7yqg4l0u!d+!$v*6*9n!a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['machine-learning-chef.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
