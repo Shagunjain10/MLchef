@@ -1,0 +1,88 @@
+
+@import url("fonts.fac0370ac940.css");
+
+
+:root{
+
+    /*      Theme colors        */
+    --text-gray: #3f4954;
+    --text-light : #686666da;
+    --bg-color: #0f0f0f;
+    --white: #ffffff;
+    --midnight: #104f55;
+
+    /* gradient color   */
+    --sky: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+
+    /*      theme font-family   */
+    --Abel: 'Abel', cursive;
+    --Anton: 'Anton', cursive;
+    --Josefin : 'Josefin', cursive;
+    --Lexend: 'Lexend', cursive;
+    --Livvic : 'Livvic', cursive;
+}
+
+
+h1{
+    font-family: var(--Lexend);
+    font-size: 2.5rem;
+}
+
+
+h2{
+    font-family: var(--Lexend);
+}
+
+
+h3{
+    font-family: var(--Abel);
+    font-size: 1.5rem;
+}
+
+
+button.btn{
+    border: none;
+    border-radius: 2rem;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    font-family: var(--Livvic);
+    cursor: pointer;
+}
+
+.site-title{
+    background: url("images/machinelearning.9ddff93a9960.jpg");
+    background-size: cover;
+    height: 65vw;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+
+}
+
+.site-background{
+    padding-top: 10%;
+
+    text-align: center;
+}
+
+.site-background h1,h3{
+    color: blue;
+    margin: 8%;
+
+}
+
+.site-background .btn{
+    margin-top: 5%;
+    background: #f1d4d4;
+    /* background-color: brown; */
+}
+
+
+.site-title .btn:hover{
+    background: transparent;
+    border: 1px solid var(--bg-color);
+    color: var(--bg-color);
+}
+
+
