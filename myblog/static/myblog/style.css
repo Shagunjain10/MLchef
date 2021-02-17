@@ -56,7 +56,6 @@
 
 .content::after {
   content: "";
-  background-image: url("../img/11.svg");
   position: absolute;
   width: 100%;
   height: inherit;
