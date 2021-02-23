@@ -25,7 +25,7 @@ SECRET_KEY = ')d(%sysbgfr61ge*h!m_gct%e!*ah7yqg4l0u!d+!$v*6*9n!a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['machine-learning-chef.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['machine-learning-chef.herokuapp.com', '127.0.0.1','localhost']
 
 
 # Application definition
